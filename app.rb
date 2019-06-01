@@ -16,6 +16,7 @@ end
 
 before do
 	@posts = Post.all
+	@comments = Comment.all
 end
 
 get '/' do
@@ -38,26 +39,20 @@ post '/new' do
     end
 end
 
-
 #вывод информации о посте
-#get '/details/:post_id' do
-	#получаем переменную из url'a
-#	post_id = params[:post_id]
+get '/details/:id' do
 
-	#получаем список постов(у нас будет только один пост)
-#	results = @db.execute 'select * from Posts where id = ?', [post_id]  #выбираются посты с id страницы
-	#выбираем этот один пост в переменную row
-#	@row = results[0]
-
-	#выбираем комментарий для нашего поста
-#	@comments = @db.execute 'select * from Comments where post_id = ? order by id', [post_id]
+	  @post = Post.find(params[:id])
+  	  erb :details
 
 	#возвращаем представление в details.erb
 #	erb :details
-#end
+end
 
-#обработчик post-запроса /details/...  браузер отправляет данные на сервер, мы их принемае
-#post '/details/:post_id' do
+post '/details/:id' do
+
+	@c = Comment.new params[:comment]
+	@c.save
 #	post_id = params[:post_id]
 #	content = params[:content]
 
@@ -84,4 +79,4 @@ end
 
 	#перенаправляем на страницу поста
 #	 redirect to('/details/' + post_id)
-#end
+end
