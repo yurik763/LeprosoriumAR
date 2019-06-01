@@ -41,42 +41,17 @@ end
 
 #вывод информации о посте
 get '/details/:id' do
-
+	  
 	  @post = Post.find(params[:id])
   	  erb :details
 
-	#возвращаем представление в details.erb
-#	erb :details
 end
 
 post '/details/:id' do
 
 	@c = Comment.new params[:comment]
 	@c.save
-#	post_id = params[:post_id]
-#	content = params[:content]
 
-#	if content.length <= 0
-#  		@error = 'Введите текст комментария'
-#  		return erb ('/details/' + post_id)
-#  	end
+redirect to session.delete(:return_to)
 
-	#сохранение данных в БД
-#  	@db.execute 'insert into Comments 
-#  		(
-#  			content, 
-#  			ceated_date, 
-# 			post_id
-#  		) 
-# 		values 
-#  		(
-#  			?,
-#  			datetime(),
-#  			?
-#  		)', [content, post_id] # сколько занков ? столько и элементов в масиве
-			 
-#	erb "You typed comment #{content} for post #{post_id}"
-
-	#перенаправляем на страницу поста
-#	 redirect to('/details/' + post_id)
 end

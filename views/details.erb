@@ -6,16 +6,16 @@
 
 <% @comments.each do |commentary|%>
 	<p>
-	<%= commentary.content%>
+	<%= commentary.comment %>
 		<br/>
-		<span style="font-size: 75%; color: #999">Added at <%= commentary.created_at%></span>
+		<span style="font-size: 75%; color: #999">Added at <%= commentary.created_at %></span>
 	</p>
 	<hr/>
 <%end%>
 
 	<p>
-	<form action="/details/<%= @post.content%>" method="POST" role="form">
-		<textarea name="comment[content]" class="form-control" id="exampleFormControlTextarea1" rows="6" placeholder="Type comment here"></textarea>
+	<form action="/details/:id" method="POST" role="form">
+		<textarea name="comment[comment]" class="form-control" id="exampleFormControlTextarea1" rows="6" placeholder="Type comment here"></textarea>
 	</br>
 	    <button type="submit" class="btn btn-primary">Add comment</button>
 	</form>
