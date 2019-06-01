@@ -20,13 +20,14 @@ get '/' do
 	erb :index			
 end
 
-#get '/new' do
-#  erb :new
-#end
+get '/new' do
+  erb :new
+end
 
-#post '/new' do
-#  @content = params[:content]
-#  @username = params[:username]
+post '/new' do
+ 	
+ 	@p = Post.new params[:post]
+ 	@p.save
 
 #  if @content.length <= 0
 #  		@error = 'Введите текст поста'
@@ -37,8 +38,8 @@ end
 #  @db.execute 'insert into Posts (content, ceated_date, username) values (?,datetime(),?)', [@content, @username]
 
   #перенаправление на главную страницу
-#  redirect to('/')
-#end
+  redirect to('/')
+end
 
 
 #вывод информации о посте
