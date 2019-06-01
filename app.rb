@@ -12,20 +12,13 @@ end
 class Comment < ActiveRecord::Base
 end
 
+before do
+	@posts = Post.all
+end
 
-#вызыается каждый раз при перезагрузке страницы любой страницы
-#before do
-#end
-
-#configure вызывается каждый раз приконфигируции приложения:
-#когда изменился код программы и перезагрузилась страница
-
-#get '/' do
-	#выбираем список постов из БД
-
-#	@results = @db.execute 'select * from Posts order by id desc'
-#	erb :index			
-#end
+get '/' do
+	erb :index			
+end
 
 #get '/new' do
 #  erb :new
