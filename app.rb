@@ -7,6 +7,8 @@ require 'sinatra/activerecord'
 set :database, "sqlite3:leprosorium.db"
 
 class Post < ActiveRecord::Base
+	validates :name, presence: true 
+    validates :content, length: {minimum: 2}
 end
 
 class Comment < ActiveRecord::Base
@@ -21,24 +23,19 @@ get '/' do
 end
 
 get '/new' do
-  erb :new
+	@p = Post.new
+  	erb :new
 end
 
 post '/new' do
  	
  	@p = Post.new params[:post]
- 	@p.save
-
-#  if @content.length <= 0
-#  		@error = 'Введите текст поста'
-#  		return erb :new
-#  end
-
-  #сохранение данных в БД
-#  @db.execute 'insert into Posts (content, ceated_date, username) values (?,datetime(),?)', [@content, @username]
-
-  #перенаправление на главную страницу
-  redirect to('/')
+ 	if @p.save
+    erb "<h2> Спасибо! </h2>"
+    else
+      @error = @p.errors.full_messages.first
+      erb :new
+    end
 end
 
 
