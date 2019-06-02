@@ -34,7 +34,7 @@ post '/new' do
  	if @p.save
     erb "<h2> Спасибо! </h2>"
     else
-      @error = @p.errors.full_messages.first
+      @error = @p.errors.messages
       erb :new
     end
 end
@@ -52,6 +52,6 @@ post '/details/:id' do
 	@c = Comment.new params[:comment]
 	@c.save
 
-redirect to session.delete(:return_to)
+	redirect to session.delete(:return_to)
 
 end
